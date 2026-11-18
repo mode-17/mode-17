@@ -2,7 +2,7 @@
 
 # Modestu Osinachi
 
-**Offensive security · web, API and cloud penetration testing**
+**Offensive security · web, API, mobile and cloud penetration testing**
 
 I find the gap between what an application *claims* to enforce and what it actually
 enforces — then prove it with a reproducible request and write it up so it gets fixed.
@@ -18,6 +18,7 @@ enforces — then prove it with a reproducible request and write it up so it get
 - **Access control** — IDOR, BOLA, BFLA, tenant and role boundaries, object ownership
 - **Authentication** — OTP/MFA flows, session lifecycle, token handling, account takeover chains
 - **API security** — GraphQL BFFs, REST, mass assignment, SSRF, rate-limit design
+- **Mobile** — Android client credential extraction, native-library analysis, JNI surfaces
 - **Client-side** — DOM sinks, postMessage, CSP and bot-defence behaviour
 - **Engagement engineering** — scoping, blueprints, test matrices, multi-identity harnesses, evidence discipline
 
@@ -33,11 +34,16 @@ Names are withheld under program rules. Sector and platform are accurate.
 
 | Sector | Platform | Window | Work | Result |
 |---|---|---|---|---|
-| Global apparel retail | HackerOne | 2026 Q4 | GraphQL BFF mapping, account-change step-up auth, OTP attempt controls | 1 report filed — closed as duplicate |
-| Online travel | HackerOne | 2026 Q4 | Access-control matrix across two identities, DOM XSS sink instrumentation, postMessage review | No report — every lead controlled to a negative |
-| Digital-asset exchange | Bugcrowd | 2026 Q4 | Auth surface mapping, IDOR/BOLA, mass assignment, SSRF, referral logic | No report — financial surface unreachable on test accounts |
-| Second-hand marketplace | Bugcrowd | 2026 Q4 | BOLA/IDOR matrix, upload handling, wallet and checkout logic | Closed — server-side eligibility gate |
-| Global payments network | HackerOne | 2026 Q4 | 169-asset scope analysis, surface ranking, test plan | Closed before traffic was sent |
+| Multi-chain stablecoin issuer | HackerOne | 2026 | Solidity role and bridge-accounting review | **NO-GO at blueprint** — my own preflight reversed before I built a harness |
+| Identity-verification SDK | HackerOne | 2026 | Browser SDK internals, liveness and tamper controls | Defence held — 2 info-level, no report |
+| Regional payments platform | YesWeHack | 2026 | Android client credentials, API misconfiguration | Secret recovered — no reachable impact, no report |
+| Global apparel retail | HackerOne | 2026 | GraphQL BFF mapping, account-change step-up auth, OTP attempt controls | 1 report filed — closed as duplicate |
+| Online travel | HackerOne | 2026 | Access-control matrix across two identities, DOM XSS sink instrumentation, postMessage review | No report — every lead controlled to a negative |
+| Digital-asset exchange | Bugcrowd | 2026 | Auth surface mapping, IDOR/BOLA, mass assignment, SSRF, referral logic | No report — financial surface unreachable on test accounts |
+
+Nine engagements in 2026: one report filed, closed as a duplicate, and eight closed on
+judgement rather than on a finding. The write-ups are the point — the decision *not* to report
+is the part that takes experience, and it is the part almost nobody publishes.
 
 Full write-ups, including the negatives and what I got wrong:
 **[security-portfolio](https://github.com/mode-17/security-portfolio)**
@@ -90,11 +96,12 @@ check, and the smallest proof that demonstrates access.
 ## Toolbox
 
 `Burp Suite Professional` · `Playwright` · `Postman` · `mitmproxy` · `ffuf` · `nuclei` ·
-`sqlmap` · `Nmap` · `Scapy` · `Suricata` · `Docker` · `Python` · `Node.js` · `Bash` ·
-`PostgreSQL` · `scikit-learn` · `Solidity / Web3` · `R / Shiny` · `Git`
+`sqlmap` · `Nmap` · `jadx` · `objdump` · `Scapy` · `Suricata` · `Docker` · `Python` ·
+`Node.js` · `Bash` · `PostgreSQL` · `scikit-learn` · `Solidity / Web3` · `R / Shiny` · `Git`
 
 Auth and edge stacks I have worked against: OAuth/OIDC, passwordless OTP, JWT bearer
-sessions, GraphQL BFFs, Fastly / Akamai / DataDome / Vercel challenge layers.
+sessions, GraphQL BFFs, Android JNI credential stores, browser-side liveness and anti-tamper
+layers, Fastly / Akamai / DataDome / Vercel challenge layers.
 
 ---
 
